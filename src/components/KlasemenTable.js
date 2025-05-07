@@ -42,57 +42,95 @@ export default function KlasemenTable() {
   };
 
   return (
-    <div className="mt-4">
-      <div className="table-responsive">
-        <Table striped bordered hover size="sm" className="text-center">
-          <thead className="table-dark">
-            <tr>
-              <th>#</th>
-              <th>TEAM</th>
-              <th>CLUB</th>
-              <th>M</th>
-              <th>W</th>
-              <th>D</th>
-              <th>L</th>
-              <th>GF</th>
-              <th>GA</th>
-              <th>GD</th>
-              <th>PTS</th>
-              <th>HISTORY</th>
-            </tr>
-          </thead>
-          <tbody>
-            {teams.map((t, i) => (
-              <tr key={t.name}>
-                <td>{i + 1}</td>
-                <td className="text-start">{t.anggota}</td>
-                <td className="text-start">
-                  <img
-                    src={`${t.logo}`}
-                    width="20"
-                    className="rounded-circle me-1"
-                    style={{ objectFit: 'cover' }}
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = '/default-logo.png'; // fallback jika logo tidak ada
-                    }}
-                  />
-                  {t.name}
-                </td>
-                <td>{t.played}</td>
-                <td>{t.win}</td>
-                <td>{t.draw}</td>
-                <td>{t.lose}</td>
-                <td>{t.gf}</td>
-                <td>{t.ga}</td>
-                <td>{t.gf - t.ga}</td>
-                <td className="fw-bold">{t.points}</td>
-                <td className="text-start">{renderFormIcons(t.form || [])}</td>
+    <div className="row mt-4">
+      {/* Kolom kiri (4 kolom) */}
+      <div className="col-md-4 mb-3">
+        {/* Tambahkan konten di sini jika ada */}
+        <div className="card bg-dark text-white">
+          <img
+            src="/images/banner_kotak.jpeg"
+            className="card-img-top"
+            alt="Banner"
+            style={{
+              objectFit: 'cover',
+              borderRadius: '8px'
+            }}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = '/default-banner.jpg'; // fallback jika URL error
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Kolom kanan (8 kolom) */}
+      <div className="col-md-8">
+        <div className="table-responsive">
+          <Table
+            striped={false}
+            bordered={false}
+            size="sm"
+            className="text-white text-center"
+            style={{
+              backgroundColor: 'rgba(255, 255, 255, 0)',
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0)',
+              border: '1px solid rgba(255, 255, 255, 0)',
+              '--bs-table-bg': 'transparent'
+            }}
+          >
+            {/* Tabel klasemen seperti sebelumnya */}
+            <thead>
+              <tr>
+                <th className="text-white">#</th>
+                <th className="text-start text-white">TEAM</th>
+                <th className="text-start text-white">CLUB</th>
+                <th className="text-white">M</th>
+                <th className="text-white">W</th>
+                <th className="text-white">D</th>
+                <th className="text-white">L</th>
+                <th className="text-white">GF</th>
+                <th className="text-white">GA</th>
+                <th className="text-white">GD</th>
+                <th className="text-white">PTS</th>
+                <th className="text-white text-start">LAST 5</th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
+            </thead>
+            <tbody>
+              {teams.map((t, i) => (
+                <tr key={t.name}>
+                  <td className="text-white">{i + 1}</td>
+                  <td className="text-white text-start">{t.anggota}</td>
+                  <td className="text-white text-start">
+                    <img
+                      src={`${t.logo}`}
+                      width="20"
+                      className="rounded-circle me-1"
+                      style={{ objectFit: 'cover' }}
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = '/default-logo.png';
+                      }}
+                    />
+                    {t.name}
+                  </td>
+                  <td className="text-white">{t.played}</td>
+                  <td className="text-white">{t.win}</td>
+                  <td className="text-white">{t.draw}</td>
+                  <td className="text-white">{t.lose}</td>
+                  <td className="text-white">{t.gf}</td>
+                  <td className="text-white">{t.ga}</td>
+                  <td className="text-white">{t.gf - t.ga}</td>
+                  <td className="text-white fw-bold">{t.points}</td>
+                  <td className="text-white text-start">
+                    {renderFormIcons(t.form || [])}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
       </div>
     </div>
+
   );
 }

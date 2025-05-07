@@ -20,8 +20,12 @@ export default function HomePage() {
       case 'klub':
         return (
           <section>
-            <div className="card shadow">
-              <div className="card-header fw-semibold">Manajemen Klub</div>
+            <div className="card" style={{
+                backgroundColor: 'rgba(0, 0, 0, 0.4)', // 10% opacity (90% transparan)
+                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.2)',
+                border: '1px solid rgba(255, 255, 255, 0.9)'
+              }}>
+              <div className="card-header fw-semibold">Daftar Kontestan</div>
               <div className="card-body overflow-auto">
                 <KlubForm onSuccess={handleRefresh} />
                 <hr />
@@ -30,14 +34,19 @@ export default function HomePage() {
             </div>
           </section>
         );
-      case 'jadwal':
+      case 'skor':
         return (
           <section>
-            <div className="card shadow">
-              <div className="card-header fw-semibold">Jadwal Pertandingan</div>
+            <div className="card" style={{
+                backgroundColor: 'rgba(0, 0, 0, 0.4)', // 10% opacity (90% transparan)
+                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.2)',
+                border: '1px solid rgba(255, 255, 255, 0.9)'
+              }}>
+              <div className="card-header fw-semibold">Result</div>
               <div className="card-body overflow-auto">
-                <JadwalForm onSuccess={handleRefresh} />
-                <hr />
+                <JadwalForm onSuccess={handleRefresh} />                
+                <hr />                
+                <InputHasilForm onSubmitSuccess={handleRefresh} />
                 <JadwalList refresh={refresh} />
               </div>
             </div>
@@ -46,10 +55,16 @@ export default function HomePage() {
       case 'hasil':
         return (
           <section>
-            <div className="card shadow">
-              <div className="card-header fw-semibold">Input Hasil Pertandingan</div>
+            <div className="card" style={{
+                backgroundColor: 'rgba(0, 0, 0, 0.4)', // 10% opacity (90% transparan)
+                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.2)',
+                border: '1px solid rgba(255, 255, 255, 0.9)'
+              }}>
+              <div className="card-header fw-semibold">Insert Score</div>
               <div className="card-body overflow-auto">
                 <InputHasilForm onSubmitSuccess={handleRefresh} />
+                <hr />
+                <JadwalList refresh={refresh} />
               </div>
             </div>
           </section>
@@ -57,8 +72,12 @@ export default function HomePage() {
       case 'klasemen':
         return (
           <section>
-            <div className="card shadow">
-              <div className="card-header fw-semibold">Klasemen Sementara</div>
+            <div className="card" style={{
+                backgroundColor: 'rgba(0, 0, 0, 0.4)', // 10% opacity (90% transparan)
+                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.2)',
+                border: '1px solid rgba(255, 255, 255, 0.9)'
+              }}>
+              <div className="card-header fw-semibold text-white">Klasemen Sementara</div>
               <div className="card-body overflow-auto">
                 <KlasemenTable />
               </div>
@@ -74,15 +93,38 @@ export default function HomePage() {
     <div className="container-fluid">
       <div className="row">
 
-        {/* Toggle for mobile */}
-        <button
-          className="btn btn-outline-secondary d-md-none my-2 ms-3 w-auto"
-          onClick={() => setShowSidebar(true)}
-        >
-          ☰ Menu
-        </button>
+        {/* Header with Menu */}
+        <header className="navbar navbar-expand-lg navbar-light p-3">
+          <div className="container-fluid">
+            <a className="navbar-brand text-white fw-bold" href="#">⚽️ CBSM SUPER LEAGUE</a>
 
-        {/* Sidebar Offcanvas */}
+            {/* Menu for mobile */}
+            <button
+              className="btn btn-outline-secondary d-md-none"
+              onClick={() => setShowSidebar(true)}
+            >
+              ☰ Menu
+            </button>
+
+            {/* Navbar links for large screens */}
+            <div className="collapse navbar-collapse">
+              <ul className="navbar-nav ms-auto">
+                {['klub', 'skor', 'klasemen'].map((item) => (
+                  <li key={item} className="nav-item">
+                    <button
+                      className={`nav-link btn btn-link text-white text-start ${activePage === item ? 'fw-bold text-primary' : 'text-secondary'}`}
+                      onClick={() => setActivePage(item)}
+                    >
+                      {item.charAt(0).toUpperCase() + item.slice(1)}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        {/* Sidebar Offcanvas for mobile */}
         <div className={`offcanvas offcanvas-start ${showSidebar ? 'show' : ''}`} tabIndex="-1" style={{ visibility: showSidebar ? 'visible' : 'hidden' }}>
           <div className="offcanvas-header">
             <h5 className="offcanvas-title">Menu</h5>
@@ -107,30 +149,8 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Sidebar Desktop */}
-        <nav className="col-md-2 d-none d-md-block bg-light sidebar vh-100 position-fixed">
-          <div className="sidebar-sticky pt-4">
-            <h5 className="text-center">Menu</h5>
-            <ul className="nav flex-column px-3">
-              {['klub', 'jadwal', 'hasil', 'klasemen'].map((item) => (
-                <li key={item} className="nav-item">
-                  <button
-                    className={`nav-link btn btn-link text-start ${activePage === item ? 'fw-bold text-primary' : 'text-secondary'}`}
-                    onClick={() => setActivePage(item)}
-                  >
-                    {item.charAt(0).toUpperCase() + item.slice(1)}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </nav>
-
         {/* Main Content */}
-        <main className="col-md-10 ms-sm-auto col-lg-10 offset-md-2 px-md-4 pt-4">
-          <h2 className="text-center mb-4 p-2 rounded-3 bg-secondary text-white fw-bold">
-            ⚽️ CBSM SUPER LEAGUE - APRIL 2025
-          </h2>
+        <main className="col-md-12 ms-sm-auto col-lg-12 offset-md-2 px-md-4 pt-4 px-3">
           {renderContent()}
         </main>
       </div>

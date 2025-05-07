@@ -23,11 +23,17 @@ body {
 }
 
 body {
+  background-image: url('/bg_liga.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
   color: var(--foreground);
-  background: var(--background);  
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Hapus atau pisahkan background-color */
+  background-color: var(--background);  /* Gunakan ini sebagai fallback */
 }
+
 
 * {
   box-sizing: border-box;
@@ -50,3 +56,31 @@ a {
   white-space: nowrap;
 }
 
+.search-jadwal::placeholder {
+  color: white !important;
+  opacity: 1 !important;
+}
+.search-jadwal {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: 0px solid white;
+}
+
+
+.input-dark,
+.input-dark::placeholder,
+.select-dark {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: 1px solid white;
+}
+
+.input-dark::placeholder {
+  color: white;
+  opacity: 1;
+}
+
+.select-dark option {
+  background-color: black;
+  color: white;
+}

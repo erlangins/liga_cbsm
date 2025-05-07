@@ -22,13 +22,21 @@ export default function KlubList() {
 
   return (
     <div className="p-3">
-      <h5 className="mb-3">Daftar Klub</h5>
-      <Table bordered hover size="sm" responsive>
-        <thead className="table-secondary">
-          <tr className="text-center">
-            <th>#</th>
-            <th>Anggota</th>
-            <th>Nama Klub</th>
+      <Table striped={false} // Nonaktifkan stripe
+            bordered={false} // Nonaktifkan border default
+            size="sm" 
+            className="text-white" 
+            style={{
+              backgroundColor: 'rgba(255, 255, 255, 0)',
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0)',
+              border: '1px solid rgba(255, 255, 255, 0)',
+              '--bs-table-bg': 'transparent' // Override CSS variable Bootstrap
+            }}>
+        <thead>
+          <tr className="text-center text-white">
+            <th className="text-white text-center">#</th>
+            <th className="text-white text-start">Anggota</th>
+            <th className="text-white text-start">Nama Klub</th>
           </tr>
         </thead>
         <tbody>
@@ -39,9 +47,9 @@ export default function KlubList() {
           ) : (
             klub.map((item, index) => (
               <tr key={item.id_klub}>
-                <td className="ms-2 text-center">{index + 1}</td>
-                <td className="ms-2">{item.anggota}</td>                
-                <td className="ms-2">
+                <td className="ms-2 text-center text-white">{index + 1}</td>
+                <td className="ms-2 text-white">{item.anggota}</td>                
+                <td className="ms-2 text-white">
                   <img
                     src={`${item.logo}`}
                     width="20"

@@ -43,10 +43,15 @@ export default function JadwalForm({ onSuccess }) {
           <input
             type="date"
             name="tanggal"
-            className="form-control"
+            className="form-control input-dark"
             value={form.tanggal}
             onChange={handleChange}
             required
+            style={{
+              backgroundColor: 'rgba(0, 0, 0, 0.1)', // hitam transparan
+              color: 'white',
+              border: '1px solid grey'
+            }}
           />
         </div>
 
@@ -57,6 +62,11 @@ export default function JadwalForm({ onSuccess }) {
             value={form.klub_a_id}
             onChange={handleChange}
             required
+            style={{
+              backgroundColor: 'rgba(0, 0, 0, 0.1)', // hitam transparan
+              color: 'white',
+              border: '1px solid grey'
+            }}
           >
             <option value="">Klub A</option>
             {klubs.map(k => (
@@ -67,7 +77,7 @@ export default function JadwalForm({ onSuccess }) {
           </select>
         </div>
 
-        <div className="col-auto fw-bold text-center">VS</div>
+        <div className="col-auto fw-bold text-center text-white">VS</div>
 
         <div className="col">
           <select
@@ -76,6 +86,11 @@ export default function JadwalForm({ onSuccess }) {
             value={form.klub_b_id}
             onChange={handleChange}
             required
+            style={{
+              backgroundColor: 'rgba(0, 0, 0, 0.1)', // hitam transparan
+              color: 'white',
+              border: '1px solid grey'
+            }}
           >
             <option value="">Klub B</option>
             {klubs.map(k => (
