@@ -77,7 +77,7 @@ export default function HomePage() {
                 boxShadow: '0 4px 6px rgba(0, 0, 0, 0.2)',
                 border: '1px solid rgba(255, 255, 255, 0.9)'
               }}>
-              <div className="card-header fw-semibold text-white">Klasemen Sementara</div>
+              <div className="card-header fw-semibold text-white">League Standings</div>
               <div className="card-body overflow-auto">
                 <KlasemenTable />
               </div>

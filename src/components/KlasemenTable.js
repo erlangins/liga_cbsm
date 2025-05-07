@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Table, Badge } from "react-bootstrap";
+import { Table, Badge, Card } from "react-bootstrap";
 
 export default function KlasemenTable() {
   const [teams, setTeams] = useState([]);
@@ -12,58 +12,86 @@ export default function KlasemenTable() {
     });
   }, []);
 
+  // Find team with highest GD
+  const getTeamWithHighestGD = () => {
+    if (teams.length === 0) return null;
+    
+    return teams.reduce((prev, current) => {
+      const prevGD = prev.gf - prev.ga;
+      const currentGD = current.gf - current.ga;
+      return currentGD > prevGD ? current : prev;
+    });
+  };
+
+  const highestGDTeam = getTeamWithHighestGD();
+
   // Fungsi render ikon berdasarkan huruf W/D/L
   const renderFormIcons = (formArray) => {
     return formArray.map((f, idx) => {
-      let icon = '';
       let color = '';
       if (f === 'W') {
-        icon = '';
         color = 'success';
       } else if (f === 'D') {
-        icon = '';
         color = 'secondary';
       } else if (f === 'L') {
-        icon = '';
         color = 'danger';
       }
 
       return (
         <span
-          key={idx}
-          className={`badge bg-${color} rounded-circle d-inline-flex align-items-center justify-content-center me-1`}
-          style={{ width: 15, height: 15, fontSize: '0.75rem' }}
-          title={f}
-        >
-          {icon}
-        </span>
+        key={idx}
+        className={`bg-${color} text-white d-inline-flex align-items-center justify-content-center rounded-circle me-1`}
+        style={{
+          width: 18,
+          height: 18,
+          fontSize: '0.6rem',         // Ukuran huruf kecil
+          fontWeight: 'normal',       // Tidak bold
+          lineHeight: 1,
+        }}
+        title={f}
+      >
+        {f}
+      </span>
       );
     });
   };
 
   return (
     <div className="row mt-4">
-      {/* Kolom kiri (4 kolom) */}
+      {/* Kolom kiri (4 kolom) - Team with highest GD */}
       <div className="col-md-4 mb-3">
-        {/* Tambahkan konten di sini jika ada */}
-        <div className="card bg-dark text-white">
-          <img
-            src="/images/banner_kotak.jpeg"
-            className="card-img-top"
-            alt="Banner"
-            style={{
-              objectFit: 'cover',
-              borderRadius: '8px'
-            }}
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = '/default-banner.jpg'; // fallback jika URL error
-            }}
-          />
-        </div>
+        <Card className="bg-transparent text-white border-0 shadow">
+          <Card.Body className="text-center">
+            <Card.Title className="mb-3">Best Goal Difference</Card.Title>
+            
+            {highestGDTeam ? (
+              <div>
+                <img
+                  src={highestGDTeam.logo}
+                  width="250"
+                  className="rounded-circle mb-2"
+                  style={{ objectFit: 'cover', border: '2px solid #fff' }}
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = '/public/images/default-banner.png';
+                  }}
+                />
+                <h5 className="mb-1">{highestGDTeam.name} <br /> {highestGDTeam.anggota} </h5>
+                <Badge bg="danger" className="fs-5 mt-2">
+                  GD: {highestGDTeam.gf - highestGDTeam.ga}
+                </Badge>
+                <div className="mt-2">
+                  <small className="d-block">{highestGDTeam.gf} Goals & {highestGDTeam.points} Points</small>
+                </div>
+              </div>
+            ) : (
+              <div className="text-muted">Loading team data...</div>
+            )}
+          </Card.Body>
+        </Card>
       </div>
 
-      {/* Kolom kanan (8 kolom) */}
+      {/* Kolom kanan (8 kolom) - Main table */}
       <div className="col-md-8">
         <div className="table-responsive">
           <Table
@@ -78,7 +106,7 @@ export default function KlasemenTable() {
               '--bs-table-bg': 'transparent'
             }}
           >
-            {/* Tabel klasemen seperti sebelumnya */}
+            {/* Rest of your table code remains the same */}
             <thead>
               <tr>
                 <th className="text-white">#</th>
@@ -92,7 +120,7 @@ export default function KlasemenTable() {
                 <th className="text-white">GA</th>
                 <th className="text-white">GD</th>
                 <th className="text-white">PTS</th>
-                <th className="text-white text-start">LAST 5</th>
+                <th className="text-white text-start">LAST 5 MATCH</th>
               </tr>
             </thead>
             <tbody>
@@ -108,7 +136,7 @@ export default function KlasemenTable() {
                       style={{ objectFit: 'cover' }}
                       onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = '/default-logo.png';
+                        e.target.src = '/public/images/default-banner.png';
                       }}
                     />
                     {t.name}
@@ -121,7 +149,7 @@ export default function KlasemenTable() {
                   <td className="text-white">{t.ga}</td>
                   <td className="text-white">{t.gf - t.ga}</td>
                   <td className="text-white fw-bold">{t.points}</td>
-                  <td className="text-white text-start">
+                  <td className="text-white text-start pt-0">
                     {renderFormIcons(t.form || [])}
                   </td>
                 </tr>
@@ -131,6 +159,5 @@ export default function KlasemenTable() {
         </div>
       </div>
     </div>
-
   );
 }
