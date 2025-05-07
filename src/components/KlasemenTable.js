@@ -76,7 +76,10 @@ export default function KlasemenTable() {
                     e.target.src = '/public/images/default-banner.png';
                   }}
                 />
-                <h5 className="mb-1">{highestGDTeam.name} <br /> {highestGDTeam.anggota} </h5>
+                <h5 className="mb-1">
+                  {highestGDTeam.name} <br /> 
+                  <span className="fw-bold text-warning">{highestGDTeam.anggota} </span>
+                </h5>
                 <Badge bg="danger" className="fs-5 mt-2">
                   GD: {highestGDTeam.gf - highestGDTeam.ga}
                 </Badge>

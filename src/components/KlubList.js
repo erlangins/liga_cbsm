@@ -56,8 +56,8 @@ export default function KlubList() {
             <thead>
               <tr className="text-center text-white">
                 <th className="text-white text-center">#</th>
-                <th className="text-white text-start">Anggota</th>
-                <th className="text-white text-start">Nama Klub</th>
+                <th className="text-white text-start">TEAM</th>
+                <th className="text-white text-start">CLUB</th>
               </tr>
             </thead>
             <tbody>

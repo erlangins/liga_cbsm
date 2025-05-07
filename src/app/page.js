@@ -17,7 +17,7 @@ export default function HomePage() {
 
   const renderContent = () => {
     switch (activePage) {
-      case 'klub':
+      case 'team':
         return (
           <section>
             <div className="card" style={{
@@ -34,7 +34,7 @@ export default function HomePage() {
             </div>
           </section>
         );
-      case 'skor':
+      case 'score':
         return (
           <section>
             <div className="card" style={{
@@ -69,7 +69,7 @@ export default function HomePage() {
             </div>
           </section>
         );
-      case 'klasemen':
+      case 'standings':
         return (
           <section>
             <div className="card" style={{
@@ -109,7 +109,7 @@ export default function HomePage() {
             {/* Navbar links for large screens */}
             <div className="collapse navbar-collapse">
               <ul className="navbar-nav ms-auto">
-                {['klub', 'skor', 'klasemen'].map((item) => (
+                {['team', 'score', 'standings'].map((item) => (
                   <li key={item} className="nav-item">
                     <button
                       className={`nav-link btn btn-link text-white text-start ${activePage === item ? 'fw-bold text-primary' : 'text-secondary'}`}

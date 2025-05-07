@@ -30,7 +30,7 @@ export default function KlubForm({ onSuccess }) {
         <input
           type="text"
           className="form-control"
-          placeholder="Anggota"
+          placeholder="Team Players"
           value={anggota}
           style={{ border: '1px solid #CCC' }}
           onChange={(e) => setAnggota(e.target.value)}
@@ -38,7 +38,7 @@ export default function KlubForm({ onSuccess }) {
         <input
           type="text"
           className="form-control"
-          placeholder="Nama Klub"
+          placeholder="Club Name"
           value={nama}
           style={{ border: '1px solid #CCC' }}
           onChange={(e) => setNama(e.target.value)}
@@ -46,13 +46,13 @@ export default function KlubForm({ onSuccess }) {
         <input
           type="text"
           className="form-control"
-          placeholder="logo url"
+          placeholder="url club icon"
           value={logo}
           style={{ border: '1px solid #CCC' }}
           onChange={(e) => setLogo(e.target.value)}
         />
         <button className="btn btn-danger" type="submit">
-          Tambah Klub
+          Add Team
         </button>
       </div>
     </form>

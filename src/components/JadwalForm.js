@@ -68,7 +68,7 @@ export default function JadwalForm({ onSuccess }) {
               border: '1px solid grey'
             }}
           >
-            <option value="">Klub A</option>
+            <option selected>Club (Home)</option>
             {klubs.map(k => (
               <option key={k.id_klub} value={k.id_klub}>
                 {k.anggota} - {k.nama_klub}
@@ -92,7 +92,7 @@ export default function JadwalForm({ onSuccess }) {
               border: '1px solid grey'
             }}
           >
-            <option value="">Klub B</option>
+            <option value="">Club (Away)</option>
             {klubs.map(k => (
               <option key={k.id_klub} value={k.id_klub}>
                 {k.anggota} - {k.nama_klub}

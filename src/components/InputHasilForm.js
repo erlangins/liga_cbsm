@@ -72,7 +72,7 @@ export default function InputHasilForm({ onSubmitSuccess }) {
       <div className="row g-2 mb-2">
         <div className="col">
           <select className="form-select" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)}>
-            <option value="">Pilih Tanggal Pertandingan</option>
+            <option value="">Choose Match Date</option>
             {tanggalList.map((tgl, i) => (
               <option key={i} value={tgl}>{tgl}</option>
             ))}
@@ -85,7 +85,7 @@ export default function InputHasilForm({ onSubmitSuccess }) {
         <div className="row g-2 mb-2">
           <div className="col">
             <select className="form-select" value={selectedMatchId} onChange={(e) => setSelectedMatchId(e.target.value)} required>
-              <option value="">Pilih Pertandingan</option>
+              <option value="">Choose Match</option>
               {filteredMatches.map((j) => {
                 if (!j.anggota_a || !j.anggota_b) return null;
                 return (

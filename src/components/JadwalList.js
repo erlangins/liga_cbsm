@@ -49,8 +49,8 @@ export default function JadwalList({ refresh }) {
       <div className="mb-3 text-white">
         <Form.Control 
           type="text"           
-          className="search-jadwal"
-          placeholder="Cari berdasarkan Tanggal, Nama Klub atau Nama Team..." 
+          className="search-jadwal py-2 px-4"
+          placeholder="Search by date, club name or team..." 
           value={searchQuery} 
           onChange={(e) => setSearchQuery(e.target.value)} 
           style={{
@@ -83,10 +83,10 @@ export default function JadwalList({ refresh }) {
           <thead>
             <tr className="text-center">
                 <th className="p-2 text-white">#</th>
-                <th className="p-2 text-white">Tanggal</th>
-                <th className="text-end p-2 text-white">Klub A</th>
-                <th className="p-2 text-white">Skor</th>
-                <th className="text-start p-2 text-white">Klub B</th>
+                <th className="p-2 text-white">DATE</th>
+                <th className="text-end p-2 text-white">CLUB HOME</th>
+                <th className="p-2 text-white">SCORE</th>
+                <th className="text-start p-2 text-white">CLUB AWAY</th>
             </tr>
           </thead>
           <tbody>
