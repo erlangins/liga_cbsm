@@ -112,18 +112,18 @@ export default function KlasemenTable() {
             {/* Rest of your table code remains the same */}
             <thead>
               <tr>
-                <th className="text-white">#</th>
-                <th className="text-start text-white">TEAM</th>
-                <th className="text-start text-white">CLUB</th>
-                <th className="text-white">M</th>
-                <th className="text-white">W</th>
-                <th className="text-white">D</th>
-                <th className="text-white">L</th>
-                <th className="text-white">GF</th>
-                <th className="text-white">GA</th>
-                <th className="text-white">GD</th>
-                <th className="text-white">PTS</th>
-                <th className="text-white text-start">LAST 5 MATCH</th>
+                <th className="text-warning">#</th>
+                <th className="text-start text-warning">TEAM PLAYERS</th>
+                <th className="text-start text-warning">OPPORTUNIST CLUB</th>
+                <th className="text-warning">M</th>
+                <th className="text-warning">W</th>
+                <th className="text-warning">D</th>
+                <th className="text-warning">L</th>
+                <th className="text-warning">GF</th>
+                <th className="text-warning">GA</th>
+                <th className="text-warning">GD</th>
+                <th className="text-warning">PTS</th>
+                <th className="text-warning text-start">LAST 5 MATCH</th>
               </tr>
             </thead>
             <tbody>
