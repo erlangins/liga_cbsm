@@ -96,7 +96,7 @@ export default function HomePage() {
         {/* Header with Menu */}
         <header className="navbar navbar-expand-lg navbar-light p-3">
           <div className="container-fluid">
-            <a className="navbar-brand text-white fw-bold" href="#">⚽️ CBSM SUPER LEAGUE</a>
+            <a className="navbar-brand text-white fw-bold" href="#">⚽️ CBSM SUPER LEAGUE - SEASON 2</a>
 
             {/* Menu for mobile */}
             <button
