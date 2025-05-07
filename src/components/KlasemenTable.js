@@ -115,6 +115,7 @@ export default function KlasemenTable() {
                 <th className="text-warning">#</th>
                 <th className="text-start text-warning">TEAM PLAYERS</th>
                 <th className="text-start text-warning">OPPORTUNIST CLUB</th>
+                <th className="text-start text-warning">CTR</th>
                 <th className="text-warning">M</th>
                 <th className="text-warning">W</th>
                 <th className="text-warning">D</th>
@@ -129,9 +130,9 @@ export default function KlasemenTable() {
             <tbody>
               {teams.map((t, i) => (
                 <tr key={t.name}>
-                  <td className="text-white">{i + 1}</td>
-                  <td className="text-white text-start">{t.anggota}</td>
-                  <td className="text-white text-start">
+                  <td className="text-white align-middle">{i + 1}</td>
+                  <td className="text-white text-start align-middle">{t.anggota}</td>
+                  <td className="text-white text-start align-middle">
                     <img
                       src={`${t.logo}`}
                       width="20"
@@ -144,14 +145,24 @@ export default function KlasemenTable() {
                     />
                     {t.name}
                   </td>
-                  <td className="text-white">{t.played}</td>
-                  <td className="text-white">{t.win}</td>
-                  <td className="text-white">{t.draw}</td>
-                  <td className="text-white">{t.lose}</td>
-                  <td className="text-white">{t.gf}</td>
-                  <td className="text-white">{t.ga}</td>
-                  <td className="text-white">{t.gf - t.ga}</td>
-                  <td className="text-white fw-bold">{t.points}</td>
+                  <td className="text-white align-middle pe-3">
+                    <img
+                      src={`${t.negara}`}
+                      width="18"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = '/public/images/default-banner.png';
+                      }}
+                    />
+                  </td>
+                  <td className="text-white align-middle">{t.played}</td>
+                  <td className="text-white align-middle">{t.win}</td>
+                  <td className="text-white align-middle">{t.draw}</td>
+                  <td className="text-white align-middle">{t.lose}</td>
+                  <td className="text-white align-middle">{t.gf}</td>
+                  <td className="text-white align-middle">{t.ga}</td>
+                  <td className="text-white align-middle">{t.gf - t.ga}</td>
+                  <td className="text-white fw-bold align-middle">{t.points}</td>
                   <td className="text-white text-start pt-0">
                     {renderFormIcons(t.form || [])}
                   </td>
