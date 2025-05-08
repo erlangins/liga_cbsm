@@ -58,6 +58,7 @@ export default function KlubList() {
                 <th className="text-white text-center">#</th>
                 <th className="text-white text-start">TEAM</th>
                 <th className="text-white text-start">CLUB</th>
+                <th className="text-white text-center">COUNTRY</th>
               </tr>
             </thead>
             <tbody>
@@ -82,6 +83,17 @@ export default function KlubList() {
                         }}
                       /> 
                       {item.nama_klub}
+                    </td>
+                    <td className="ms-2 text-white text-center">
+                      <img
+                        src={`${item.negara}`}
+                        width="20"
+                        className="rounded-circle"
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = '/images/default-banner.png';
+                        }}
+                      /> 
                     </td>
                   </tr>
                 ))
